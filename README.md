@@ -1,9 +1,5 @@
 # Strapi Starter Next 13, Tailwind, Typescript and Strapi
 
-note: This project was started with love by [Trecia](https://github.com/TreciaKS), [Daniel](https://github.com/malgamves) and [Paul](https://github.com/PaulBratslavsky). We were all new to Next 13 and Typescript. If you find any bugs or improvements feel free to create an issue. Thank you all for your support and participation.
-
-
-If you prefer videos that guide you therought the setup process you can find them [here](https://github.com/strapi/nextjs-corporate-starter/issues/71)
 
 ## Getting Started
 
