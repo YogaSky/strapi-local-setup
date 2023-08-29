@@ -1,68 +1,70 @@
 import Link from "next/link";
+import Image from "next/image";
+
+
+interface FeatureProps {
+  title: string;
+  description: string;
+  url: string;
+}
+
+function Feature({ title, description, url }: FeatureProps) {
+  return (
+    <div className="flex flex-col mb-10 lg:items-start items-center">
+      
+      <div className="flex-grow">
+        <h2 className="text-pink-900 text-lg title-font font-medium mb-3">{title}</h2>
+        <p className="leading-relaxed text-base">{description}</p>
+        <Link href={url} className="mt-3 text-indigo-500 inline-flex items-center">
+          Learn More
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            className="w-4 h-4 ml-2"
+            viewBox="0 0 24 24"
+          >
+            {/* Add the SVG path here */}
+          </svg>
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 interface FeaturesProps {
   data: {
     heading: string;
     description: string;
-    feature: Feature[];
+    feature: FeatureProps[];
   };
-}
-
-interface Feature {
-  id: string;
-  title: string;
-  description: string;
-  showLink: boolean;
-  newTab: boolean;
-  url: string;
-  text: string;
-}
-
-function Feature({ title, description, showLink, newTab, url, text }: Feature) {
-  return (
-    <div className="flex flex-col items-center p-4">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="w-8 h-8 dark:text-violet-400"
-      >
-        <path
-          fillRule="evenodd"
-          d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-          clipRule="evenodd"
-        ></path>
-      </svg>
-      <h3 className="my-3 text-3xl font-semibold">{title}</h3>
-      <div className="space-y-1 leading-tight my-6">
-        <p>{description}</p>
-      </div>
-      {showLink && url && text && (
-        <div>
-          <Link
-            href={url}
-            target={newTab ? "_blank" : "_self"}
-            className="inline-block px-4 py-2 mt-4 text-sm font-semibold text-white transition duration-200 ease-in-out bg-violet-500 rounded-lg hover:bg-violet-600"
-          >
-            {text}
-          </Link>
-        </div>
-      )}
-    </div>
-  );
 }
 
 export default function Features({ data }: FeaturesProps) {
   return (
-    <section className="dark:bg-black dark:text-gray-100 m:py-12 lg:py-24">
-      <div className="container mx-auto py-4 space-y-2 text-center">
-        <h2 className="text-5xl font-bold">{data.heading}</h2>
-        <p className="dark:text-gray-400">{data.description}</p>
-      </div>
-      <div className="container mx-auto my-6 grid justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {data.feature.map((feature: Feature, index: number) => (
-          <Feature key={index} {...feature} />
-        ))}
+    <section className="text-white-600 body-font">
+      <div className="container px-5 py-24 mx-auto flex flex-wrap">
+        <div className="flex flex-col flex-wrap mx-auto mb-10 lg:mb-0 lg:w-2/3 text-center">
+          <h2 className="text-3xl font-bold mb-4">{data.heading}</h2>
+          <p className="text-lg mb-8">{data.description}</p>
+        </div>
+        <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
+          <img 
+            alt="feature"
+            className="object-cover object-center w-auto max-h-full"
+            src="https://kodesolution.com/html/2018/martialarts-html/demo/images/about/3.png"
+            
+         
+          />
+        </div>
+        <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
+          {data.feature.map((feature: FeatureProps, index: number) => (
+            <Feature key={index} {...feature} />
+          ))}
+        </div>
       </div>
     </section>
   );
